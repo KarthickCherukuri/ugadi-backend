@@ -1,0 +1,5 @@
+timeStamp,email,name,rollNo,phoneNumber,transactionId,transactionDate,paymentProofUrl,isUsed
+2025-03-30T10:00:00Z,21ec01012@iitbbs.ac.in,John Doe,CS001,9876543210,TXN123456,2025-03-25,https://example.com/proof1.jpg,false
+2025-03-30T10:15:00Z,21ee01026@iitbbs.ac.in,Jane Smith,CS002,9876543211,TXN123457,2025-03-26,https://example.com/proof2.jpg,false
+2025-03-30T10:30:00Z,21ee01037@iitbbs.ac.in,Alex Johnson,CS003,9876543212,TXN123458,2025-03-27,https://example.com/proof3.jpg,false
+2025-03-30T10:45:00Z,karthickcherukuri@gmail.com,Maria Garcia,CS004,9876543213,TXN123459,2025-03-28,https://example.com/proof4.jpg,false

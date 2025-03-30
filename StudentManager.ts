@@ -1,0 +1,33 @@
+import { getDocs } from "firebase/firestore";
+import { Student } from "./types";
+import { addStudent, getAllStudents, getIndiv } from "./firebaseConfig";
+import { EmailManager } from "./EmailManager";
+
+export default class StudentManager {
+  static async getAllStudents() {
+    const studentsSnap = await getDocs(getAllStudents);
+    const payload = studentsSnap.docs.map((each) => each.data());
+    return payload as Student[];
+  }
+
+  static async getStudentByRollNumber(rollNumber: string) {
+    const querySnapshot = await getDocs(getIndiv(rollNumber));
+    if (querySnapshot.empty) {
+      return;
+    }
+    const student = querySnapshot.docs[0].data() as Student;
+    return student;
+  }
+
+  static async addStudent(student: Student) {
+    await addStudent(student);
+    EmailManager.sendQrForEmail(
+      student.name,
+      student.email,
+      "UGADI 2025",
+      student.rollNo
+    ).catch((error) => {
+      console.error("Error sending email:", error);
+    });
+  }
+}
