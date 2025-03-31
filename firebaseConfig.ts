@@ -39,10 +39,16 @@ export const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const colref = collection(db, "students");
+export const slotActivationColRef = collection(db, "slotActivation");
 export const getAllStudents = query(colref);
 export const getDocRefById = (id: string) => doc(db, "students", id);
+export const getActivationRef = (id: string) => doc(db, "slotActivation", id);
+
 export const getIndiv = (transactionId: string) =>
   query(colref, where("transactionId", "==", transactionId));
+
+export const getSlotActivation = (slot: number) =>
+  getDocs(query(slotActivationColRef, where("slot", "==", slot)));
 export const addStudent = async (data: Student) => {
   try {
     const docRef = await addDoc(colref, data);

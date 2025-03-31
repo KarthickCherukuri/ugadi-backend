@@ -176,11 +176,14 @@ export class EmailManager {
         throw new Error("QR code payload cannot be empty");
       }
       const encodedPayload = Codec.encode(payload);
-      const qrBuffer = await qrCode.toBuffer(encodedPayload, {
-        errorCorrectionLevel: "H",
-        margin: 1,
-        width: 300,
-      });
+      const qrBuffer = await qrCode.toBuffer(
+        `https://my-app-613238079894.asia-south1.run.app/${encodedPayload}`,
+        {
+          errorCorrectionLevel: "H",
+          margin: 1,
+          width: 300,
+        }
+      );
 
       // Create unique content ID for the image
       const contentId = `qr-${Date.now()}@ugadi.com`;
@@ -220,7 +223,7 @@ export class EmailManager {
                           ⚠️ Warning: This QR code is for ONE-TIME use only
                       </p>
                       <p style="margin-top: 8px; color: #666; font-size: 0.9em;">
-                          Please do not share this QR code with anyone. It can only be scanned once at the entrance and will become invalid after use.
+                          Please do not share this QR code with anyone or scan this QR code. It can only be scanned once at the entrance and will become invalid after use.
                       </p>
                   </div>
                   
