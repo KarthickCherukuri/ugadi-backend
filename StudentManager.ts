@@ -10,23 +10,21 @@ export default class StudentManager {
     return payload as Student[];
   }
 
-  static async getStudentByRollNumber(rollNumber: string) {
-    const querySnapshot = await getDocs(getIndiv(rollNumber));
+  static async getStudentByRollNumber(transactionId: string) {
+    const querySnapshot = await getDocs(getIndiv(transactionId));
     if (querySnapshot.empty) {
       return;
     }
     const student = querySnapshot.docs[0].data() as Student;
-    return student;
+    return { student, id: querySnapshot.docs[0].id };
   }
 
   static async addStudent(student: Student) {
     await addStudent(student);
-    EmailManager.sendQrForEmail(
-      student.name,
-      student.email,
-      "UGADI 2025",
-      student.rollNo
-    ).catch((error) => {
+    EmailManager.sendQrForEmail(student.name, student.email, "UGADI 2025", {
+      id: student.transactionId,
+      slot: student.slot,
+    }).catch((error) => {
       console.error("Error sending email:", error);
     });
   }

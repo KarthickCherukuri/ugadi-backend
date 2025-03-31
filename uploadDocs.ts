@@ -2,7 +2,6 @@
 import fs from "fs";
 import path from "path";
 import { parse } from "csv-parse";
-import { addStudent } from "./firebaseConfig";
 import { Student } from "./types";
 import StudentManager from "./StudentManager";
 
@@ -27,7 +26,8 @@ export const readCSVFile = async (
         const student: Student = {
           ...data,
           phoneNumber: Number(data.phoneNumber),
-          isUsed: data.isUsed.toLowerCase() === "true",
+          isUsed: false,
+          slot: Number(data.slot),
         };
         results.push(student);
       })

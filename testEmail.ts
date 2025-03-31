@@ -1,8 +1,8 @@
 import { EmailManager } from "./EmailManager";
 
-EmailManager.sendQrForEmail(
-  "John Doe",
-  "21ee01026@iitbbs.ac.in",
-  "Test Email",
-  "This is a test email with a QR code."
-);
+// EmailManager.retryFailedEmails();
+
+EmailManager.sendQrForEmail("Karthick", "21ec01012@iitbbs.ac.in", "ugadi qr", {
+  id: "this is a test email",
+  slot: 1,
+});

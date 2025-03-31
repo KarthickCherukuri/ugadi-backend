@@ -1,12 +1,11 @@
 export interface Student {
-  timeStamp: String;
   email: string;
   name: string;
-  rollNo: string;
   phoneNumber: number;
-  transactionId: String;
+  transactionId: string;
   transactionDate: String;
-  paymentProofUrl: String;
-
+  totalAmount: number;
+  foodAmount: number;
+  slot: number;
   isUsed: boolean;
 }
