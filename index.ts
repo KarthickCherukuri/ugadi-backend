@@ -109,6 +109,8 @@ app.get("/:id", async (req, res) => {
               <p><strong>Name:</strong> ${student.name}</p>
               <p><strong>Email:</strong> ${student.email}</p>
               <p><strong>Transaction ID:</strong> ${student.transactionId}</p>
+              <p><strong>Food Amount:</strong> ${student.foodAmount}</p>
+              <p><strong>Total Amount:</strong> ${student.totalAmount}</p>
             </div>
             <div class="dinner-info">
               <p><strong>Dinner Time Slot:</strong> <span class="dinner-time">Slot ${student.slot}</span></p>
@@ -137,10 +139,8 @@ app.get("/:id", async (req, res) => {
     };
     const slotActivationSnapShot = await getSlotActivation(student.slot);
     if (slotActivationSnapShot.docs[0].data().isActive) {
-      console.log("Slot is active");
       await updateDoc(docRef, updatedPayload as any);
     }
-    console.log("slot inactive");
 
     // Send success HTML
     res.send(`
@@ -176,6 +176,8 @@ app.get("/:id", async (req, res) => {
             <p><strong>Name:</strong> ${student.name}</p>
             <p><strong>Email:</strong> ${student.email}</p>
             <p><strong>Transaction ID:</strong> ${student.transactionId}</p>
+             <p><strong>Food Amount:</strong> ${student.foodAmount}</p>
+              <p><strong>Total Amount:</strong> ${student.totalAmount}</p>
           </div>
           <div class="dinner-info">
             <p><strong>Dinner Time Slot:</strong> <span class="dinner-time">Slot ${student.slot}</span></p>
